@@ -1,0 +1,20 @@
+name: CI (programs pilot)
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+jobs:
+  scaffold-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure scaffold exists
+        run: |
+          test -d programs/factory
+          test -d programs/master
+          test -d programs/bot
+          test -d tests
+          test -f README.md
+          test -f docs/OVERVIEW.md
+          test -f docs/IDS.md
+          test -f ops/RUNBOOK.md
